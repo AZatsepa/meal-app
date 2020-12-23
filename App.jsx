@@ -1,19 +1,8 @@
 /* eslint-disable global-require */
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import Colors from './constants/colors';
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: Colors.white,
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
+import MealsNavigator from './navigation/MealsNavigator';
 
 const fetchFonts = () => (Font.loadAsync({
   'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
@@ -35,9 +24,6 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <MealsNavigator />
   );
 }
