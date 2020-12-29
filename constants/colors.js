@@ -5,7 +5,7 @@ const Colors = {
   grey: '#ccc',
   lightGrey: '#f5f5f5',
   primaryColor: '#4a148c',
-  secondaryColor: '#ff6f00',
+  accentColor: '#ff6f00',
 };
 
 export default Colors;

@@ -3,6 +3,8 @@ import { string, func, number } from 'prop-types';
 import {
   View, Text, StyleSheet, TouchableOpacity, ImageBackground,
 } from 'react-native';
+
+import DefaultText from './DefaultText';
 import Colors from '../constants/colors';
 
 const styles = StyleSheet.create({
@@ -23,6 +25,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.lightGrey,
     borderRadius: 10,
     height: 200,
+    marginVertical: 10,
     overflow: 'hidden',
     width: '100%',
   },
@@ -59,12 +62,12 @@ const MealItem = ({
           </ImageBackground>
         </View>
         <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-          <Text>
+          <DefaultText>
             {duration}
             m
-          </Text>
-          <Text>{complexity.toUpperCase()}</Text>
-          <Text>{affordability.toUpperCase()}</Text>
+          </DefaultText>
+          <DefaultText>{complexity.toUpperCase()}</DefaultText>
+          <DefaultText>{affordability.toUpperCase()}</DefaultText>
         </View>
       </View>
     </TouchableOpacity>
