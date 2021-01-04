@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {
   arrayOf,
   shape,
@@ -20,34 +21,38 @@ const styles = StyleSheet.create({
   },
 });
 
-const MealsList = ({ navigation, meals }) => (
-  <View style={styles.screen}>
-    <FlatList
-      data={meals}
-      renderItem={({
-        item: {
-          id,
-          title,
-          duration,
-          complexity,
-          affordability,
-          imageUrl,
-        },
-      }) => (
-        <MealItem
-          title={title}
-          onSelect={navigation.navigate}
-          mealId={id}
-          duration={duration}
-          complexity={complexity}
-          affordability={affordability}
-          image={imageUrl}
-        />
-      )}
-      style={styles.mealsContainer}
-    />
-  </View>
-);
+const MealsList = ({ navigation, meals }) => {
+  const favoriteMeals = useSelector((state) => state.meals.favoriteMeals);
+  return (
+    <View style={styles.screen}>
+      <FlatList
+        data={meals}
+        renderItem={({
+          item: {
+            id,
+            title,
+            duration,
+            complexity,
+            affordability,
+            imageUrl,
+          },
+        }) => (
+          <MealItem
+            title={title}
+            onSelect={navigation.navigate}
+            mealId={id}
+            duration={duration}
+            complexity={complexity}
+            affordability={affordability}
+            image={imageUrl}
+            isFav={favoriteMeals.some((meal) => meal.id === id)}
+          />
+        )}
+        style={styles.mealsContainer}
+      />
+    </View>
+  );
+};
 
 MealsList.propTypes = {
   meals: arrayOf(

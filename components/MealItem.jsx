@@ -1,5 +1,7 @@
 import React from 'react';
-import { string, func, number } from 'prop-types';
+import {
+  string, func, number, bool,
+} from 'prop-types';
 import {
   View, Text, StyleSheet, TouchableOpacity, ImageBackground,
 } from 'react-native';
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
 });
 
 const MealItem = ({
-  title, onSelect, mealId, duration, complexity, affordability, image,
+  title, onSelect, mealId, duration, complexity, affordability, image, isFav,
 }) => (
   <View style={styles.mealItem}>
     <TouchableOpacity
@@ -52,6 +54,7 @@ const MealItem = ({
         routeName: 'MealDetail',
         params: {
           mealId,
+          isFav,
         },
       })}
     >
@@ -82,6 +85,7 @@ MealItem.propTypes = {
   complexity: string.isRequired,
   affordability: string.isRequired,
   image: string.isRequired,
+  isFav: bool.isRequired,
 };
 
 export default MealItem;

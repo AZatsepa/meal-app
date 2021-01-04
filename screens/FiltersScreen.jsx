@@ -4,8 +4,10 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import {
   View, Text, StyleSheet, Switch,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import CustomHeaderButton from '../components/CustomHeaderButton';
+import { setFilters } from '../store/actions/meals';
 import Colors from '../constants/colors';
 
 const styles = StyleSheet.create({
@@ -46,6 +48,8 @@ const FiltersScreen = ({ navigation }) => {
   const [isVegetarian, setIsVegetarian] = useState(false);
   const [isLactoseFree, setIsLactoseFree] = useState(false);
 
+  const dispatch = useDispatch();
+
   const saveFilters = useCallback(() => {
     const appliedFilters = {
       glutenFree: isGlutenFree,
@@ -53,8 +57,8 @@ const FiltersScreen = ({ navigation }) => {
       vegan: isVegan,
       vegetarian: isVegetarian,
     };
-    console.log(appliedFilters);
-  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
+    dispatch(setFilters(appliedFilters));
+  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian, dispatch]);
 
   useEffect(() => {
     navigation.setParams({ save: saveFilters });
